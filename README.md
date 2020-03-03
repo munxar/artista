@@ -28,16 +28,17 @@ A graphql query definitions named typeDefs and a react-pdf documents names docs.
 ```typescript
 import React from 'react'
 import { Document, Page, Text } from '@react-pdf/renderer'
+import { gql } from 'apollo-server-express'
 
 export default () => {
     return {
         // grpahql definition
         // 
-        typeDefs: {
+        typeDefs: gql`
             Query {
                 myDoc(title: String): TemplateResponse
             }        
-        },
+        `,
         // document definition
         docs: {
             myDoc: ({ title }) => {
