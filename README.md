@@ -35,7 +35,7 @@ export default () => {
         // grpahql definition
         // 
         typeDefs: gql`
-            Query {
+            type Query {
                 myDoc(title: String): TemplateResponse
             }        
         `,
