@@ -2,7 +2,7 @@ import React from 'react'
 import ReactPDF from '@react-pdf/renderer'
 import gm from 'gm'
 import { docs } from './schema'
-import { url } from './environment'
+import { url, dpi } from './environment'
 
 export const renderTemplateStream = async ({ id, args }, { format, width }) => {
     const doc = docs.find(doc => doc.id === id)
@@ -11,7 +11,7 @@ export const renderTemplateStream = async ({ id, args }, { format, width }) => {
     }
     let stream = await ReactPDF.renderToStream(<doc.doc {...args} />) as any
     if (format !== 'pdf') {
-        stream = gm(stream).resize(width).stream(format)
+        stream = gm(stream).density(dpi, dpi).resize(width).stream(format)
     }
     return stream
 }
